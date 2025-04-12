@@ -25,31 +25,39 @@ pip install ultralytics
 `KITTI` Dataset
 
 ```bash
-python Butter-KITTI-train2.py --model_path ultralytics/cfg/models/Butter/Butter-All-KITTI.yaml --device 0 --name [NAME]
+python Butter-KITTI-train2.py --model_path ultralytics/cfg/models/Butter/Butter[SCALE]-All-KITTI.yaml --device 0 --name [NAME]
 ```
 
 
-The `--model_path` option specifies the specific model configuration, with predefined configurations stored in the `ultralytics/cfg/models/Butter/` directory. The `--device` option specifies the GPU ID for single-GPU training. The `--name` option sets the name of the training experiment as `[NAME]`, and the final results will be saved under `runs/detect/[NAME]`.  
+The `--model_path` option specifies the specific model configuration, with predefined configurations stored in the `ultralytics/cfg/models/Butter/` directory. `[SCALE]` You may choose between `n` and `m`; if `[SCALE]` is not specified, it defaults to `n`. In the original paper, Butter is a model scaled with `m`. The `--device` option specifies the GPU ID for single-GPU training. The `--name` option sets the name of the training experiment as `[NAME]`, and the final results will be saved under `runs/detect/[NAME]`.  
 After training is completed, the best model weights will be saved at `runs/detect/[NAME]/weights/best.pt`.
 
 ### Multi-GPU Training  
+`Cityscapes` Dataset
+
+```bash
+TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.run --nproc_per_node=4 Butter-City-train.py --model_path ultralytics/cfg/models/Butter/Butter[SCALE]-All-City.yaml --device 1,2,3,6 --name [NAME]
+```
+
+The `--nproc_per_node` option specifies the number of GPUs to use. The `--model_path` option specifies the specific model configuration, with predefined configurations stored in the `ultralytics/cfg/models/Butter/` directory. You may choose between `n` and `m`; if `[SCALE]` is not specified, it defaults to `n`. In the original paper, Butter is a model scaled with `m`. The `--device` option specifies the GPU IDs for multi-GPU training, separated by commas. The `--name` option sets the name of the training experiment as `[NAME]`, and the final results will be saved under `runs/detect/[NAME]`.
+
+`BDD100K` Dataset
+
+```bash
+TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.run --nproc_per_node=4 Butter-BDD100K-train.py --model_path ultralytics/cfg/models/Butter/Butter[SCALE]-All-BDD100K.yaml --device 4,5,6,7 --name [NAME]
+```
+
+
+The `--nproc_per_node` option specifies the number of GPUs to use. The `--model_path` option specifies the specific model configuration, with predefined configurations stored in the `ultralytics/cfg/models/Butter/` directory. You may choose between `n` and `m`; if `[SCALE]` is not specified, it defaults to `n`. In the original paper, Butter is a model scaled with `m`. The `--device` option specifies the GPU IDs for multi-GPU training, separated by commas. The `--name` option sets the name of the training experiment as `[NAME]`, and the final results will be saved in `runs/detect/[NAME]`.
+
 `COCO` Dataset
 
 ```bash
 TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.run --nproc_per_node=4 Butter-coco-train2.py --model_path ultralytics/cfg/models/Butter/Butter-All-COCO.yaml --device 1,2,3,6 --name [NAME]
 ```
-Here is the English translation:
+
 
 The `--nproc_per_node` option specifies the number of GPUs to use. The `--model_path` option specifies the specific model configuration, with predefined configurations stored in the `ultralytics/cfg/models/Butter/` directory. The `--device` option specifies the GPU IDs for multi-GPU training, separated by commas. The `--name` option sets the name of the training experiment as `[NAME]`, and the final results will be saved under `runs/detect/[NAME]`.
-
-`BDD100K` Dataset
-
-```bash
-TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.run --nproc_per_node=4 Butter-BDD100K-train.py --model_path ultralytics/cfg/models/Butter/Butter-All-BDD100K.yaml --device 4,5,6,7 --name [NAME]
-```
-
-
-The `--nproc_per_node` option specifies the number of GPUs to use. The `--model_path` option specifies the specific model configuration, with predefined configurations stored in the `ultralytics/cfg/models/Butter/` directory. The `--device` option specifies the GPU IDs for multi-GPU training, separated by commas. The `--name` option sets the name of the training experiment as `[NAME]`, and the final results will be saved in `runs/detect/[NAME]`.
 
 
 
@@ -62,10 +70,10 @@ python Butter-KITTI-predict.py --model_path runs/detect/[TRAIN_NAME]/weights/bes
 
 Here, the `--model_path` option specifies the best model weights obtained from training, located at `runs/detect/[TRAIN_NAME]/weights/best.pt`, where `[TRAIN_NAME]` should be replaced with the name of the training experiment. The `--name` option sets the name of the prediction experiment as `[NAME]`, and the final results will be saved in `runs/detect/[NAME]`.
 
-`COCO` Dataset
+`Cityscapes` Dataset
 
 ```bash
-python Butter-COCO-predict.py --model_path runs/detect/[TRAIN_NAME]/weights/best.pt --name [NAME]
+python Butter-City-predict.py --model_path runs/detect/[TRAIN_NAME]/weights/best.pt --name [NAME]
 ```
 
 Here, the `--model_path` option specifies the best model weights obtained from training, located at `runs/detect/[TRAIN_NAME]/weights/best.pt`, where `[TRAIN_NAME]` should be replaced with the name of the training experiment. The `--name` option sets the name of the prediction experiment as `[NAME]`, and the final results will be saved in `runs/detect/[NAME]`.
@@ -79,3 +87,13 @@ python Butter-BDD100K-predict.py --model_path runs/detect/[TRAIN_NAME]/weights/b
 
 Here, the `--model_path` option specifies the best model weights obtained from training, located at `runs/detect/[TRAIN_NAME]/weights/best.pt`, where `[TRAIN_NAME]` should be replaced with the name of the training experiment. The `--name` option sets the name of the prediction experiment as `[NAME]`, and the final results will be saved in `runs/detect/[NAME]`.
 </details>
+
+`COCO` Dataset
+
+```bash
+python Butter-COCO-predict.py --model_path runs/detect/[TRAIN_NAME]/weights/best.pt --name [NAME]
+```
+
+Here, the `--model_path` option specifies the best model weights obtained from training, located at `runs/detect/[TRAIN_NAME]/weights/best.pt`, where `[TRAIN_NAME]` should be replaced with the name of the training experiment. The `--name` option sets the name of the prediction experiment as `[NAME]`, and the final results will be saved in `runs/detect/[NAME]`.
+
+
