@@ -1,0 +1,16 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2)
+# file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: /data3/liyang/Proj/Cityscapes # dataset root dir example
+train: images/train # train images (relative to 'path') 4 images
+val: images/val # val images (relative to 'path') 4 images
+
+
+names:
+  0: car
+  1: person
+  2: rider
+  3: truck
+  4: bus
+  5: train
+  6: motorcycle
+  7: bicycle
