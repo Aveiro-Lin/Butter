@@ -260,6 +260,7 @@ class BasePredictor:
                     if self.args.embed:
                         yield from [preds] if isinstance(preds, torch.Tensor) else preds  # yield embedding tensors
                         continue
+                print(profilers[1].dt)
 
                 # Postprocess
                 with profilers[2]:
