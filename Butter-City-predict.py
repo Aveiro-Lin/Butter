@@ -12,12 +12,12 @@ def main(opt):
     # print(info)
     yolo.info()
 
-    result = yolo(source='datasets/KITTI/images/val',save=True,save_conf = True,save_txt = True,name=name)
+    result = yolo(source='/data3/liyang/Proj/Cityscapes/images/val',save=True,save_conf = True,save_txt = True,name=name)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', type=str, default="runs/detect/1-D-All/weights/best.pt")
-    parser.add_argument('--name', type=str, default="KITTI-predict")
+    parser.add_argument('--model_path', type=str, default="runs/detect/All1-City/weights/best.pt")
+    parser.add_argument('--name', type=str, default="City-predict")
     opt = parser.parse_args()
 
     main(opt)

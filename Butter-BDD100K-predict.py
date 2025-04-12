@@ -7,6 +7,8 @@ def main(opt):
 
     yolo = YOLO(model_path,task="detect")
 
+    yolo.info()
+
     result = yolo(source='datasets/BDD100K/images/test',save=True,save_conf = True,save_txt = True,name=name)
 
 if __name__ == '__main__':
