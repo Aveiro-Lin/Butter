@@ -25,7 +25,7 @@ pip install ultralytics
 `KITTI` Dataset
 
 ```bash
-python Butter-KITTI-train2.py --model_path ultralytics/cfg/models/Butter/Butter[SCALE]-All-KITTI.yaml --device 0 --name [NAME]
+python Butter-KITTI-train.py --model_path ultralytics/cfg/models/Butter/Butter[SCALE]-All-KITTI.yaml --device 0 --name [NAME]
 ```
 
 
