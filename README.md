@@ -53,7 +53,7 @@ The `--nproc_per_node` option specifies the number of GPUs to use. The `--model_
 `COCO` Dataset
 
 ```bash
-TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.run --nproc_per_node=4 Butter-coco-train2.py --model_path ultralytics/cfg/models/Butter/Butter-All-COCO.yaml --device 1,2,3,6 --name [NAME]
+TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.run --nproc_per_node=4 Butter-coco-train.py --model_path ultralytics/cfg/models/Butter/Butter-All-COCO.yaml --device 1,2,3,6 --name [NAME]
 ```
 
 
