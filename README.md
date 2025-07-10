@@ -1,6 +1,8 @@
 # <div align="center">✨Butter✨</div>
 
 
+> 🏆 This paper **"Butter: Frequency Consistency and Hierarchical Fusion for Autonomous Driving Object Detection"** has been **accepted to ACM Multimedia 2025**.
+
 
 
 Butter is a novel 2D object detection framework designed to enhance hierarchical feature representations for improved detection robustness. 
