@@ -4,6 +4,7 @@
 > 🏆 This paper **"Butter: Frequency Consistency and Hierarchical Fusion for Autonomous Driving Object Detection"** has been **accepted to ACM Multimedia 2025**.
 >
 >  Paper: https://www.arxiv.org/pdf/2507.13373
+>  Checkpoint: https://huggingface.co/Christopher-Lim/Butter
 
 
 
